@@ -10,8 +10,8 @@ SESSION_CONFIGS = [
 
 ROOMS = [
     dict(
-        name='control',
-        display_name='Control',
+        name='room_c',
+        display_name='Room C',
     )
 ]
 
