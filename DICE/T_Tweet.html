@@ -57,7 +57,7 @@
                         <span class="bi bi-chat text-secondary reply-icon" id="reply_icon_{{i.doc_id}}" style="cursor: pointer">️</span>
                         <span class="reply-count text-secondary" id="reply_count_{{i.doc_id}}">{{i.replies}}</span>
                     </div>
-                    <div class="retweet-button col">
+                    <div class="retweet-button col" id="retweet_button_{{i.doc_id}}">
                         <span class="bi bi-arrow-repeat text-secondary retweet-icon" style="cursor: pointer">️</span>
                         <span class="retweet-count text-secondary">{{i.retweets}}</span>
                     </div>
@@ -66,7 +66,7 @@
                         <span class="like-count text-secondary">{{i.likes}}</span>
                         <input class="like-field" type="hidden" name="liked_item_{{i.doc_id}}" id="liked_item_{{i.doc_id}}">
                     </div>
-                    <div class="share-button col">
+                    <div class="share-button col" id="share_button_{{i.doc_id}}">
                         <span class="bi bi-upload text-secondary share-icon" style="cursor: pointer">️</span>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                         <span class="bi bi-chat text-secondary reply-icon" id="reply_icon_{{i.doc_id}}" style="cursor: pointer">️</span>
                         <span class="reply-count text-secondary" id="reply_count_{{i.doc_id}}">{{i.replies}}</span>
                     </div>
-                    <div class="retweet-button col">
+                    <div class="retweet-button col" id="retweet_button_{{i.doc_id}}">
                         <span class="bi bi-arrow-repeat text-secondary retweet-icon" style="cursor: pointer">️</span>
                         <span class="retweet-count text-secondary">{{i.retweets}}</span>
                     </div>
@@ -139,7 +139,7 @@
                         <span class="bi bi-heart text-secondary like-icon" style="cursor: pointer">️</span>
                         <span class="like-count text-secondary">{{i.likes}}</span>
                     </div>
-                    <div class="share-button col">
+                    <div class="share-button col" id="share_button_{{i.doc_id}}">
                         <span class="bi bi-upload text-secondary share-icon" style="cursor: pointer">️</span>
                     </div>
                 </div>

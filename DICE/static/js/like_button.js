@@ -3,6 +3,15 @@ console.log("Reactions ready!");
 document.addEventListener('DOMContentLoaded', function() {
     let repliesData = [];
     let likesData = [];
+    let retweetsData = [];
+    let sharesData = [];
+
+    function withMode(record, mode) {
+        if (typeof window.currentFeedMode !== "undefined") {
+            record.mode = mode || window.currentFeedMode || "default";
+        }
+        return record;
+    }
 
     // Function to toggle the like state of a button
     function toggleLike(button) {
@@ -27,6 +36,18 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.like-button').forEach(button => {
         button.addEventListener('click', function() {
             toggleLike(button);
+        });
+    });
+
+    document.querySelectorAll('.retweet-button').forEach(button => {
+        button.addEventListener('click', function() {
+            button.dataset.retweetMode = window.currentFeedMode || "default";
+        });
+    });
+
+    document.querySelectorAll('.share-button').forEach(button => {
+        button.addEventListener('click', function() {
+            button.dataset.shareMode = window.currentFeedMode || "default";
         });
     });
 
@@ -68,10 +89,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function collectRetweets() {
+        document.querySelectorAll('.retweet-button').forEach(button => {
+            let docId = button.getAttribute('id').replace('retweet_button_', '');
+            let isRetweeted = button.classList.contains('retweeted');
+            let mode = button.dataset.retweetMode || window.currentFeedMode || "default";
+            retweetsData.push(withMode({ doc_id: docId, retweeted: isRetweeted }, mode));
+        });
+    }
+
+    function collectShares() {
+        document.querySelectorAll('.share-button').forEach(button => {
+            let docId = button.getAttribute('id').replace('share_button_', '');
+            let isShared = button.classList.contains('shared');
+            let mode = button.dataset.shareMode || window.currentFeedMode || "default";
+            sharesData.push(withMode({ doc_id: docId, shared: isShared }, mode));
+        });
+    }
+
     // Function to collect data
     function collectData() {
         collectLikes();  // Populates the likesData array
-        return { likes: JSON.stringify(likesData), replies: JSON.stringify(repliesData) };
+        collectRetweets();
+        collectShares();
+        return {
+            likes: JSON.stringify(likesData),
+            replies: JSON.stringify(repliesData),
+            retweets: JSON.stringify(retweetsData),
+            shares: JSON.stringify(sharesData)
+        };
     }
 
     // Event listener for the submit button
@@ -80,6 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let data = collectData();
         document.getElementById('likes_data').value = data.likes;
         document.getElementById('replies_data').value = data.replies;
+        document.getElementById('retweets_data').value = data.retweets;
+        document.getElementById('shares_data').value = data.shares;
         console.log("Data to send:", data);
     });
 

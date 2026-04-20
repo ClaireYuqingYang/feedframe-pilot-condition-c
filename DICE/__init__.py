@@ -46,6 +46,8 @@ class Player(BasePlayer):
     viewport_data = models.LongStringField(doc='tracks the time feed items were visible in a participants viewport.')
     likes_data = models.LongStringField(doc='tracks likes.', blank=True)
     replies_data = models.LongStringField(doc='tracks replies.', blank=True)
+    retweets_data = models.LongStringField(doc='tracks reposts/retweets.', blank=True)
+    shares_data = models.LongStringField(doc='tracks shares.', blank=True)
 
     touch_capability = models.BooleanField(doc="indicates whether a participant uses a touch device to access survey.",
                                            blank=True)
@@ -236,7 +238,7 @@ class C_Feed(Page):
 
     @staticmethod
     def get_form_fields(player: Player):
-        fields =  ['likes_data', 'replies_data', 'touch_capability', 'device_type']
+        fields =  ['likes_data', 'replies_data', 'retweets_data', 'shares_data', 'touch_capability', 'device_type']
 
         if not player.session.config['topics'] & player.session.config['show_cta']:
             more_fields =  ['scroll_sequence', 'viewport_data'] # , 'cta']
@@ -317,9 +319,9 @@ page_sequence = [A_Intro,
 def custom_export(players):
     # header row
     yield ['session', 'participant_code', 'participant_label', 'participant_in_session', 'condition', 'item_sequence',
-           'scroll_sequence', 'item_dwell_time', 'likes', 'replies']
+           'scroll_sequence', 'item_dwell_time', 'likes', 'replies', 'retweets', 'shares']
     for p in players:
         participant = p.participant
         session = p.session
         yield [session.code, participant.code, participant.label, p.id_in_group, p.feed_condition, p.sequence,
-               p.scroll_sequence, p.viewport_data, p.likes_data, p.replies_data]
+               p.scroll_sequence, p.viewport_data, p.likes_data, p.replies_data, p.retweets_data, p.shares_data]
