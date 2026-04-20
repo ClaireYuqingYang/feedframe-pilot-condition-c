@@ -6,6 +6,7 @@ import os
 import random
 import httplib2
 from itertools import cycle
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 
 
@@ -198,10 +199,10 @@ def preprocessing(df):
 
 
 def create_redirect(player):
-    if player.participant.label:
-        link = player.session.config['survey_link'] + '?' + player.session.config['url_param'] + '=' + player.participant.label
-    else:
-        link = player.session.config['survey_link'] + '?' + player.session.config['url_param'] + '=' + player.participant.code
+    split_link = urlsplit(player.session.config['survey_link'])
+    query_params = dict(parse_qsl(split_link.query))
+    query_params[player.session.config['url_param']] = player.participant.label or player.participant.code
+    query_params['condition'] = player.session.config.get('condition_name', '')
 
     completion_code = None
 
@@ -210,9 +211,9 @@ def create_redirect(player):
 
     if 'completion_code' in player.session.vars:
         if player.session.vars['completion_code'] is not None:
-            link = link + '&' + 'cc=' + player.session.vars['completion_code']
+            query_params['cc'] = player.session.vars['completion_code']
 
-    return link
+    return urlunsplit(split_link._replace(query=urlencode(query_params)))
 
 
 # PAGES
