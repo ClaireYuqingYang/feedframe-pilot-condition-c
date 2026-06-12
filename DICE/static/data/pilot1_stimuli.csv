@@ -1,19 +1,19 @@
 set;doc_id;datetime;tweet;media;alt_text;likes;retweets;replies;username;handle;user_description;user_image;user_followers;commented_post;sponsored;target;condition;sequence
-A;0;2026-03-11 09:00;"World’s Smallest Gold Coin Features
+A;0;2026-03-11;"World’s Smallest Gold Coin Features
 Albert Einstein Sticking Out Tongue";/static/img/headlines/B_0.png;;238;9;24;WSJ;The Wall Street Journal; ;/static/img/avatars/B_0.png;0;;0;;;
-A;1;2026-03-11 09:00;Authorities Scramble To Find Stolen Solid Gold Toilet;/static/img/headlines/B_1.png;;392;16;17;AP;The Associated Press; ;/static/img/avatars/B_1.png;0;;0;;;
-A;2;2026-03-11 09:00;Applications To Become Japanese Billionaire Yusaku Maezawa's Girlfriend Have Topped 20,000;/static/img/headlines/B_2.jpg;;421;13;27;Bloomberg;Bloomberg; ;/static/img/avatars/B_2.jpg;0;;0;;;
-A;3;2026-03-11 09:00;Woman Boards Flight to Find Her Seat Assignment Is In The Plane’s Bathroom;/static/img/headlines/B_3.png;;305;6;20;BBCNews;BBC News; ;/static/img/avatars/B_3.jpg;0;;0;;;
-A;4;2026-03-11 09:00;Kansas Man Asks Judge To Allow Him To Have Sword Fight With Ex-Wife;/static/img/headlines/B_4.png;;278;17;30;NatEnquirer;The National Enquirer; ;/static/img/avatars/B_4.png;0;;0;;;
-A;5;2026-03-11 09:00;Teen Discovers Rare New Planet 3 Days Into NASA Internship;/static/img/headlines/B_5.png;;360;10;22;70news;70news; ;/static/img/avatars/B_5.jpeg;0;;0;;;
-A;6;2026-03-11 09:00;Two Elderly Men Sneak Out Of Nursing Home To Attend Heavy Metal Festival;/static/img/headlines/B_6.png;;154;19;16;ExaminerMedia;News Examiner; ;/static/img/avatars/B_6.png;0;;0;;;
-A;7;2026-03-11 09:00;Spotify Launches Playlists For Dogs Left Home Alone;/static/img/headlines/B_7.png;;265;7;26;worldnetdaily;WorldNetDaily; ;/static/img/avatars/B_7.jpeg;0;;0;;;
-B;8;2026-03-11 09:00;"World’s Smallest Gold Coin Features
+A;1;2026-03-11;Authorities Scramble To Find Stolen Solid Gold Toilet;/static/img/headlines/B_1.png;;392;16;17;AP;The Associated Press; ;/static/img/avatars/B_1.png;0;;0;;;
+A;2;2026-03-11;Applications To Become Japanese Billionaire Yusaku Maezawa's Girlfriend Have Topped 20,000;/static/img/headlines/B_2.jpg;;421;13;27;Bloomberg;Bloomberg; ;/static/img/avatars/B_2.jpg;0;;0;;;
+A;3;2026-03-11;Woman Boards Flight to Find Her Seat Assignment Is In The Plane’s Bathroom;/static/img/headlines/B_3.png;;305;6;20;BBCNews;BBC News; ;/static/img/avatars/B_3.jpg;0;;0;;;
+A;4;2026-03-11;Kansas Man Asks Judge To Allow Him To Have Sword Fight With Ex-Wife;/static/img/headlines/B_4.png;;278;17;30;NatEnquirer;The National Enquirer; ;/static/img/avatars/B_4.png;0;;0;;;
+A;5;2026-03-11;Teen Discovers Rare New Planet 3 Days Into NASA Internship;/static/img/headlines/B_5.png;;360;10;22;70news;70news; ;/static/img/avatars/B_5.jpeg;0;;0;;;
+A;6;2026-03-11;Two Elderly Men Sneak Out Of Nursing Home To Attend Heavy Metal Festival;/static/img/headlines/B_6.png;;154;19;16;ExaminerMedia;News Examiner; ;/static/img/avatars/B_6.png;0;;0;;;
+A;7;2026-03-11;Spotify Launches Playlists For Dogs Left Home Alone;/static/img/headlines/B_7.png;;265;7;26;worldnetdaily;WorldNetDaily; ;/static/img/avatars/B_7.jpeg;0;;0;;;
+B;8;2026-03-11;"World’s Smallest Gold Coin Features
 Albert Einstein Sticking Out Tongue";/static/img/headlines/B_8.png;;238;9;24;weeklyworldnews;Weekly World News; ;/static/img/avatars/B_8.jpeg;0;;0;;;
-B;9;2026-03-11 09:00;Authorities Scramble To Find Stolen Solid Gold Toilet;/static/img/headlines/B_9.png;;392;16;17;huzlersmedia;Huzlers; ;/static/img/avatars/B_9.png;0;;0;;;
-B;10;2026-03-11 09:00;Applications To Become Japanese Billionaire Yusaku Maezawa's Girlfriend Have Topped 20,000;/static/img/headlines/B_10.jpg;;421;13;27;theheatmag;Heat Magazine; ;/static/img/avatars/B_10.png;0;;0;;;
-B;11;2026-03-11 09:00;Woman Boards Flight to Find Her Seat Assignment Is In The Plane’s Bathroom;/static/img/headlines/B_11.png;;305;6;20;newspunch;NewsPunch; ;/static/img/avatars/B_11.jpg;0;;0;;;
-B;12;2026-03-11 09:00;Kansas Man Asks Judge To Allow Him To Have Sword Fight With Ex-Wife;/static/img/headlines/B_12.png;;278;17;30;ABC;ABC News; ;/static/img/avatars/B_12.png;0;;0;;;
-B;13;2026-03-11 09:00;Teen Discovers Rare New Planet 3 Days Into NASA Internship;/static/img/headlines/B_13.png;;360;10;22;sciam;Scientific American; ;/static/img/avatars/B_13.png;0;;0;;;
-B;14;2026-03-11 09:00;Two Elderly Men Sneak Out Of Nursing Home To Attend Heavy Metal Festival;/static/img/headlines/B_14.png;;154;19;16;PBS;PBS News; ;/static/img/avatars/B_14.png;0;;0;;;
-B;15;2026-03-11 09:00;Spotify Launches Playlists For Dogs Left Home Alone;/static/img/headlines/B_15.png;;265;7;26;guardian;The Guardian; ;/static/img/avatars/B_15.jpeg;0;;0;;;
+B;9;2026-03-11;Authorities Scramble To Find Stolen Solid Gold Toilet;/static/img/headlines/B_9.png;;392;16;17;huzlersmedia;Huzlers; ;/static/img/avatars/B_9.png;0;;0;;;
+B;10;2026-03-11;Applications To Become Japanese Billionaire Yusaku Maezawa's Girlfriend Have Topped 20,000;/static/img/headlines/B_10.jpg;;421;13;27;theheatmag;Heat Magazine; ;/static/img/avatars/B_10.png;0;;0;;;
+B;11;2026-03-11;Woman Boards Flight to Find Her Seat Assignment Is In The Plane’s Bathroom;/static/img/headlines/B_11.png;;305;6;20;newspunch;NewsPunch; ;/static/img/avatars/B_11.jpg;0;;0;;;
+B;12;2026-03-11;Kansas Man Asks Judge To Allow Him To Have Sword Fight With Ex-Wife;/static/img/headlines/B_12.png;;278;17;30;ABC;ABC News; ;/static/img/avatars/B_12.png;0;;0;;;
+B;13;2026-03-11;Teen Discovers Rare New Planet 3 Days Into NASA Internship;/static/img/headlines/B_13.png;;360;10;22;sciam;Scientific American; ;/static/img/avatars/B_13.png;0;;0;;;
+B;14;2026-03-11;Two Elderly Men Sneak Out Of Nursing Home To Attend Heavy Metal Festival;/static/img/headlines/B_14.png;;154;19;16;PBS;PBS News; ;/static/img/avatars/B_14.png;0;;0;;;
+B;15;2026-03-11;Spotify Launches Playlists For Dogs Left Home Alone;/static/img/headlines/B_15.png;;265;7;26;guardian;The Guardian; ;/static/img/avatars/B_15.jpeg;0;;0;;;
