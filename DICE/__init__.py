@@ -39,6 +39,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     # ad_condition = models.StringField(doc='indicates the ad condition a player is randomly assigned to')
     feed_condition = models.StringField(doc='indicates the feed condition a player is randomly assigned to')
+    set_condition = models.StringField(doc='indicates the headline set a player is randomly assigned to', blank=True)
     sequence = models.StringField(doc='prints the sequence of tweets based on doc_id')
 
     # cta = models.BooleanField(doc='indicates whether CTA was clicked or not')
@@ -62,16 +63,26 @@ def creating_session(subsession):
     # read data (from seesion config)
     df = read_feed(subsession.session.config['data_path'])
     tweets = preprocessing(df)
-    for player in subsession.get_players():
+    players = subsession.get_players()
+    for player in players:
         player.participant.tweets = tweets
+        player.feed_condition = subsession.session.config.get('condition_name', '')
 
     # if the file contains any conditions, read them an assign groups to it
-    condition = player.session.config['condition_col']
+    condition = subsession.session.config['condition_col']
     if condition in tweets.columns:
         feed_conditions = tweets[condition].unique()
         # subsession.feed_conditions = str(feed_conditions)
-        for player in subsession.get_players():
+        for player in players:
             player.feed_condition = random.choice(feed_conditions)
+
+    set_col = subsession.session.config.get('set_col', 'set')
+    if set_col in tweets.columns:
+        set_conditions = [str(value) for value in tweets[set_col].dropna().unique()]
+        set_assignments = [value for _, value in zip(players, cycle(set_conditions))]
+        random.shuffle(set_assignments)
+        for player, set_condition in zip(players, set_assignments):
+            player.set_condition = set_condition
 
     # set banner ad conditions based on images in directory
     # all_files = os.listdir('twitter/static/img')
@@ -88,18 +99,24 @@ def creating_session(subsession):
     # PREPARE DATA:
     # subset data based on condition (if any)
     # I need to find a way to deal with '' or "", that is, escape them.
-    for player in subsession.get_players():
+    for player in players:
         tweets = player.participant.tweets
         condition = player.session.config['condition_col']
         if condition in tweets.columns:
             tweets = tweets[tweets[condition] == str(player.feed_condition)]
+        set_col = player.session.config.get('set_col', 'set')
+        if set_col in tweets.columns and player.set_condition:
+            tweets = tweets[tweets[set_col].astype(str) == str(player.set_condition)]
 
         # sort or shuffle data
-        sort_by = player.session.config['sort_by']
-        if sort_by in tweets.columns:
+        sort_by = player.session.config.get('sort_by', '')
+        if player.session.config.get('shuffle_feed', False):
+            tweets = tweets.sample(frac=1)
+            tweets.reset_index(drop=True, inplace=True)
+        elif sort_by in tweets.columns:
             tweets = tweets.sort_values(by=sort_by, ascending=True)
         else:
-            tweets = tweets.sample(frac=1, random_state=42)  # Set a random_state for reproducibility
+            tweets = tweets.sample(frac=1)
             # Reset the index after shuffling
             tweets.reset_index(drop=True, inplace=True)
 
@@ -120,11 +137,26 @@ def creating_session(subsession):
 
 
 # make pictures (if any) visible
-def extract_first_url(text):
-    urls = re.findall("(?P<url>https?://[\S]+)", str(text))
+def extract_media_path(text):
+    value = str(text).strip().strip("'\"").strip(',')
+    if value == '' or value.lower() in ['nan', 'none']:
+        return ''
+
+    urls = re.findall(r'https?://[^\s,]+', value)
     if urls:
-        return urls[0]
-    return None
+        return urls[0].strip("'\",")
+
+    static_paths = re.findall(r'/static/[^\s,]+', value)
+    if static_paths:
+        return static_paths[0].strip("'\",")
+
+    if re.match(r'^(img|images|headlines)/[^\s,]+\.(png|jpe?g|gif|webp|svg)$', value, re.IGNORECASE):
+        return f'/static/{value}'
+
+    if re.match(r'^[^\s,]+\.(png|jpe?g|gif|webp|svg)$', value, re.IGNORECASE):
+        return f'/static/img/{value}'
+
+    return value
 
 # check urls
 h = httplib2.Http()
@@ -175,9 +207,9 @@ def preprocessing(df):
     df['retweets'] = df['retweets'].fillna(0).astype(int)
     df['likes'] = df['likes'].fillna(0).astype(int)
 
-    df['media'] = df['media'].apply(extract_first_url)
+    df['media'] = df['media'].apply(extract_media_path)
     df['media'] = df['media'].str.replace("'|,", '', regex=True)
-    df['pic_available'] = np.where(df['media'].str.match(pat='http'), True, False)
+    df['pic_available'] = np.where(df['media'].fillna('').str.match(pat=r'^(https?://|/static/)'), True, False)
 
     # create a name icon as a profile pic
     df['icon'] = df['username'].str[:2]
@@ -205,6 +237,7 @@ def create_redirect(player):
     query_params = dict(parse_qsl(split_link.query))
     query_params[player.session.config['url_param']] = player.participant.label or player.participant.code
     query_params['condition'] = player.session.config.get('condition_name', '')
+    query_params['set_condition'] = player.set_condition
 
     completion_code = None
 
@@ -318,10 +351,10 @@ page_sequence = [A_Intro,
 
 def custom_export(players):
     # header row
-    yield ['session', 'participant_code', 'participant_label', 'participant_in_session', 'condition', 'item_sequence',
+    yield ['session', 'participant_code', 'participant_label', 'participant_in_session', 'condition', 'set_condition', 'item_sequence',
            'scroll_sequence', 'item_dwell_time', 'likes', 'replies', 'retweets', 'shares']
     for p in players:
         participant = p.participant
         session = p.session
-        yield [session.code, participant.code, participant.label, p.id_in_group, p.feed_condition, p.sequence,
+        yield [session.code, participant.code, participant.label, p.id_in_group, p.feed_condition, p.set_condition, p.sequence,
                p.scroll_sequence, p.viewport_data, p.likes_data, p.replies_data, p.retweets_data, p.shares_data]
