@@ -39,7 +39,6 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     # ad_condition = models.StringField(doc='indicates the ad condition a player is randomly assigned to')
     feed_condition = models.StringField(doc='indicates the feed condition a player is randomly assigned to')
-    set_condition = models.StringField(doc='indicates the headline set a player is randomly assigned to', blank=True)
     sequence = models.StringField(doc='prints the sequence of tweets based on doc_id')
 
     # cta = models.BooleanField(doc='indicates whether CTA was clicked or not')
@@ -58,6 +57,10 @@ class Player(BasePlayer):
 
 
 # FUNCTIONS -----
+def get_set_condition(player):
+    return player.participant.vars.get('set_condition', '')
+
+
 def creating_session(subsession):
 
     # read data (from seesion config)
@@ -67,6 +70,7 @@ def creating_session(subsession):
     for player in players:
         player.participant.tweets = tweets
         player.feed_condition = subsession.session.config.get('condition_name', '')
+        player.participant.vars['set_condition'] = ''
 
     # if the file contains any conditions, read them an assign groups to it
     condition = subsession.session.config['condition_col']
@@ -82,7 +86,7 @@ def creating_session(subsession):
         set_assignments = [value for _, value in zip(players, cycle(set_conditions))]
         random.shuffle(set_assignments)
         for player, set_condition in zip(players, set_assignments):
-            player.set_condition = set_condition
+            player.participant.vars['set_condition'] = set_condition
 
     # set banner ad conditions based on images in directory
     # all_files = os.listdir('twitter/static/img')
@@ -105,8 +109,9 @@ def creating_session(subsession):
         if condition in tweets.columns:
             tweets = tweets[tweets[condition] == str(player.feed_condition)]
         set_col = player.session.config.get('set_col', 'set')
-        if set_col in tweets.columns and player.set_condition:
-            tweets = tweets[tweets[set_col].astype(str) == str(player.set_condition)]
+        set_condition = get_set_condition(player)
+        if set_col in tweets.columns and set_condition:
+            tweets = tweets[tweets[set_col].astype(str) == str(set_condition)]
 
         # sort or shuffle data
         sort_by = player.session.config.get('sort_by', '')
@@ -237,7 +242,7 @@ def create_redirect(player):
     query_params = dict(parse_qsl(split_link.query))
     query_params[player.session.config['url_param']] = player.participant.label or player.participant.code
     query_params['condition'] = player.session.config.get('condition_name', '')
-    query_params['set_condition'] = player.set_condition
+    query_params['set_condition'] = get_set_condition(player)
 
     completion_code = None
 
@@ -356,5 +361,5 @@ def custom_export(players):
     for p in players:
         participant = p.participant
         session = p.session
-        yield [session.code, participant.code, participant.label, p.id_in_group, p.feed_condition, p.set_condition, p.sequence,
+        yield [session.code, participant.code, participant.label, p.id_in_group, p.feed_condition, get_set_condition(p), p.sequence,
                p.scroll_sequence, p.viewport_data, p.likes_data, p.replies_data, p.retweets_data, p.shares_data]
