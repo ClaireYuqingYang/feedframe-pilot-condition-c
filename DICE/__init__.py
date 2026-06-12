@@ -39,6 +39,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     # ad_condition = models.StringField(doc='indicates the ad condition a player is randomly assigned to')
     feed_condition = models.StringField(doc='indicates the feed condition a player is randomly assigned to')
+    set_condition = models.StringField(doc='indicates the headline set a player is randomly assigned to', blank=True)
     sequence = models.StringField(doc='prints the sequence of tweets based on doc_id')
 
     # cta = models.BooleanField(doc='indicates whether CTA was clicked or not')
@@ -58,7 +59,7 @@ class Player(BasePlayer):
 
 # FUNCTIONS -----
 def get_set_condition(player):
-    return player.participant.vars.get('set_condition', '')
+    return player.set_condition or player.participant.vars.get('set_condition', '')
 
 
 def creating_session(subsession):
@@ -70,6 +71,7 @@ def creating_session(subsession):
     for player in players:
         player.participant.tweets = tweets
         player.feed_condition = subsession.session.config.get('condition_name', '')
+        player.set_condition = ''
         player.participant.vars['set_condition'] = ''
 
     # if the file contains any conditions, read them an assign groups to it
@@ -86,6 +88,7 @@ def creating_session(subsession):
         set_assignments = [value for _, value in zip(players, cycle(set_conditions))]
         random.shuffle(set_assignments)
         for player, set_condition in zip(players, set_assignments):
+            player.set_condition = set_condition
             player.participant.vars['set_condition'] = set_condition
 
     # set banner ad conditions based on images in directory
