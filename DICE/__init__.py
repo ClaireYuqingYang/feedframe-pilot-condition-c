@@ -243,7 +243,7 @@ def preprocessing(df):
 def create_redirect(player):
     split_link = urlsplit(player.session.config['survey_link'])
     query_params = dict(parse_qsl(split_link.query))
-    query_params[player.session.config['url_param']] = player.participant.label or player.participant.code
+    query_params['otree_participant_code'] = player.participant.code
     query_params['condition'] = player.session.config.get('condition_name', '')
     query_params['set_condition'] = get_set_condition(player)
 
