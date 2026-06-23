@@ -5,6 +5,56 @@ document.addEventListener('DOMContentLoaded', function() {
     let likesData = [];
     let retweetsData = [];
     let sharesData = [];
+    const interactedDocIds = new Set();
+    const minimumInteractedPosts = 3;
+    const submitButton = document.getElementById('submitButton');
+    const requirementMessage = document.getElementById('interactionRequirementMessage');
+    let proceedVisible = false;
+
+    function updateProceedState() {
+        const interactionCount = interactedDocIds.size;
+        const hasMinimumInteractions = interactionCount >= minimumInteractedPosts;
+
+        if (submitButton) {
+            submitButton.disabled = !hasMinimumInteractions;
+        }
+
+        if (!requirementMessage) {
+            return;
+        }
+
+        if (!proceedVisible) {
+            requirementMessage.style.display = 'none';
+            return;
+        }
+
+        requirementMessage.style.display = '';
+
+        if (hasMinimumInteractions) {
+            requirementMessage.className = 'text-success small text-center px-3 pb-4';
+            requirementMessage.textContent = `You have interacted with ${interactionCount} posts. You may proceed.`;
+        } else {
+            requirementMessage.className = 'text-muted small text-center px-3 pb-4';
+            requirementMessage.textContent = `Please interact with at least ${minimumInteractedPosts} posts before continuing. (${interactionCount}/${minimumInteractedPosts})`;
+        }
+    }
+
+    function markInteraction(docId) {
+        interactedDocIds.add(String(docId));
+        updateProceedState();
+    }
+
+    window.feedInteractionGate = {
+        hasMinimumInteractions: function() {
+            return interactedDocIds.size >= minimumInteractedPosts;
+        },
+        setProceedVisible: function(visible) {
+            proceedVisible = visible;
+            updateProceedState();
+        },
+    };
+
+    updateProceedState();
 
     function withMode(record, mode) {
         if (typeof window.currentFeedMode !== "undefined") {
@@ -36,17 +86,20 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.like-button').forEach(button => {
         button.addEventListener('click', function() {
             toggleLike(button);
+            markInteraction(button.getAttribute('id').replace('like_button_', ''));
         });
     });
 
     document.querySelectorAll('.retweet-button').forEach(button => {
         button.addEventListener('click', function() {
+            markInteraction(button.getAttribute('id').replace('retweet_button_', ''));
             button.dataset.retweetMode = window.currentFeedMode || "default";
         });
     });
 
     document.querySelectorAll('.share-button').forEach(button => {
         button.addEventListener('click', function() {
+            markInteraction(button.getAttribute('id').replace('share_button_', ''));
             button.dataset.shareMode = window.currentFeedMode || "default";
         });
     });
@@ -68,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             replyField.value = '';
             repliesData.push({ doc_id: docId, reply: replyText });
+            markInteraction(docId);
         }
     }
 
@@ -109,6 +163,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to collect data
     function collectData() {
+        likesData = [];
+        retweetsData = [];
+        sharesData = [];
         collectLikes();  // Populates the likesData array
         collectRetweets();
         collectShares();
@@ -122,7 +179,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Event listener for the submit button
     document.getElementById('submitButton').addEventListener('click', function(event) {
-        //event.preventDefault();
+        if (!window.feedInteractionGate.hasMinimumInteractions()) {
+            event.preventDefault();
+            proceedVisible = true;
+            updateProceedState();
+            return;
+        }
+
         let data = collectData();
         document.getElementById('likes_data').value = data.likes;
         document.getElementById('replies_data').value = data.replies;

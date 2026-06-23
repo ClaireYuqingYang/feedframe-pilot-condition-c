@@ -119,10 +119,11 @@
                         {{ endfor }}
 
                         <tr class="">
-                            <td class="d-flex justify-content-center">
-                                <button class="btn btn-dark m-4" id="submitButton" type="submit" style="display: none;">
+                            <td class="d-flex flex-column align-items-center">
+                                <button class="btn btn-dark m-4" id="submitButton" type="submit" style="display: none;" disabled>
                                     Proceed
                                 </button>
+                                <div class="text-muted small text-center px-3 pb-4" id="interactionRequirementMessage" style="display: none;"></div>
                             </td>
                         </tr>
                     </tbody>

@@ -9,9 +9,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setTimeout(function () {
         submitButton.style.display = '';
+        if (window.feedInteractionGate && typeof window.feedInteractionGate.setProceedVisible === 'function') {
+            window.feedInteractionGate.setProceedVisible(true);
+        }
     }, showButtonAfterMs);
 
     setTimeout(function () {
+        if (window.feedInteractionGate && typeof window.feedInteractionGate.hasMinimumInteractions === 'function') {
+            window.feedInteractionGate.setProceedVisible(true);
+            if (window.feedInteractionGate.hasMinimumInteractions()) {
+                submitButton.click();
+            }
+            return;
+        }
+
         submitButton.click();
     }, autoSubmitAfterMs);
 });
