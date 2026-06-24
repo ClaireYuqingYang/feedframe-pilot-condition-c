@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    const showButtonAfterMs = 30 * 1000;
+    const showButtonAfterMs = 1 * 60 * 1000;
     const autoSubmitAfterMs = 90 * 1000;
 
     setTimeout(function () {
