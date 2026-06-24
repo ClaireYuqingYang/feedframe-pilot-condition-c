@@ -1,19 +1,17 @@
 set;doc_id;datetime;tweet;media;alt_text;likes;retweets;replies;username;handle;user_description;user_image;user_followers;commented_post;sponsored;target;condition;sequence
-A;0;2026-03-11;"World’s Smallest Gold Coin Features
-Albert Einstein Sticking Out Tongue";/static/img/headlines/B_0.png;;238;9;24;WSJ;The Wall Street Journal; ;/static/img/avatars/B_0.png;0;;0;;;
-A;1;2026-03-11;Authorities Scramble To Find Stolen Solid Gold Toilet;/static/img/headlines/B_1.png;;392;16;17;AP;The Associated Press; ;/static/img/avatars/B_1.png;0;;0;;;
-A;2;2026-03-11;Applications To Become Japanese Billionaire Yusaku Maezawa's Girlfriend Have Topped 20,000;/static/img/headlines/B_2.jpg;;421;13;27;Bloomberg;Bloomberg; ;/static/img/avatars/B_2.jpg;0;;0;;;
-A;3;2026-03-11;Woman Boards Flight to Find Her Seat Assignment Is In The Plane’s Bathroom;/static/img/headlines/B_3.png;;305;6;20;BBCNews;BBC News; ;/static/img/avatars/B_3.jpg;0;;0;;;
-A;4;2026-03-11;Kansas Man Asks Judge To Allow Him To Have Sword Fight With Ex-Wife;/static/img/headlines/B_4.png;;278;17;30;NatEnquirer;The National Enquirer; ;/static/img/avatars/B_4.png;0;;0;;;
-A;5;2026-03-11;Teen Discovers Rare New Planet 3 Days Into NASA Internship;/static/img/headlines/B_5.png;;360;10;22;70news;70news; ;/static/img/avatars/B_5.jpeg;0;;0;;;
-A;6;2026-03-11;Two Elderly Men Sneak Out Of Nursing Home To Attend Heavy Metal Festival;/static/img/headlines/B_6.png;;154;19;16;ExaminerMedia;News Examiner; ;/static/img/avatars/B_6.png;0;;0;;;
-A;7;2026-03-11;Spotify Launches Playlists For Dogs Left Home Alone;/static/img/headlines/B_7.png;;265;7;26;worldnetdaily;WorldNetDaily; ;/static/img/avatars/B_7.jpeg;0;;0;;;
-B;8;2026-03-11;"World’s Smallest Gold Coin Features
-Albert Einstein Sticking Out Tongue";/static/img/headlines/B_8.png;;238;9;24;weeklyworldnews;Weekly World News; ;/static/img/avatars/B_8.jpeg;0;;0;;;
-B;9;2026-03-11;Authorities Scramble To Find Stolen Solid Gold Toilet;/static/img/headlines/B_9.png;;392;16;17;huzlersmedia;Huzlers; ;/static/img/avatars/B_9.png;0;;0;;;
-B;10;2026-03-11;Applications To Become Japanese Billionaire Yusaku Maezawa's Girlfriend Have Topped 20,000;/static/img/headlines/B_10.jpg;;421;13;27;theheatmag;Heat Magazine; ;/static/img/avatars/B_10.png;0;;0;;;
-B;11;2026-03-11;Woman Boards Flight to Find Her Seat Assignment Is In The Plane’s Bathroom;/static/img/headlines/B_11.png;;305;6;20;newspunch;NewsPunch; ;/static/img/avatars/B_11.jpg;0;;0;;;
-B;12;2026-03-11;Kansas Man Asks Judge To Allow Him To Have Sword Fight With Ex-Wife;/static/img/headlines/B_12.png;;278;17;30;ABC;ABC News; ;/static/img/avatars/B_12.png;0;;0;;;
-B;13;2026-03-11;Teen Discovers Rare New Planet 3 Days Into NASA Internship;/static/img/headlines/B_13.png;;360;10;22;sciam;Scientific American; ;/static/img/avatars/B_13.png;0;;0;;;
-B;14;2026-03-11;Two Elderly Men Sneak Out Of Nursing Home To Attend Heavy Metal Festival;/static/img/headlines/B_14.png;;154;19;16;PBS;PBS News; ;/static/img/avatars/B_14.png;0;;0;;;
-B;15;2026-03-11;Spotify Launches Playlists For Dogs Left Home Alone;/static/img/headlines/B_15.png;;265;7;26;guardian;The Guardian; ;/static/img/avatars/B_15.jpeg;0;;0;;;
+A;0;2026-03-11;Rare Pink Bananas Discovered, Touted as Nature's Cotton Candy;;;238;9;24;@WSJ;The Wall Street Journal;;/static/img/avatars/C_0.png;0;;0;;;
+A;1;2026-03-11;The Real Jurassic Park? Dinosaur DNA Successfully Extracted from Fossil;;;392;16;17;@funnytimes;The Funny Times;;/static/img/avatars/C_1.png;0;;0;;;
+A;2;2026-03-11;Researchers Develop Plants That Emit Enough Energy to Power a Tiny-House;;;421;13;27;@TheEconomist;The Economist;;/static/img/avatars/C_2.jpg;0;;0;;;
+A;3;2026-03-11;Innovative Study Finds Dolphins Can Be Trained To Detect Cancer;;;305;6;20;@Quora;Quora;;/static/img/avatars/C_3.jpg;0;;0;;;
+A;4;2026-03-11;The Mystery of the Bermuda Triangle: New Theory Suggests Surprising Explanation;;;278;17;30;@PBS;PBS News;;/static/img/avatars/C_4.png;0;;0;;;
+A;5;2026-03-11;Scientists Discover a New Species of Glow-in-the-Dark Bees in the Amazon;;;360;10;22;@NatEnquirer;The National Enquirer;;/static/img/avatars/C_5.png;0;;0;;;
+A;6;2026-03-11;New Fossil Discovery Suggests Rat-Sized Elephants Once Inhabited the Earth;;;154;19;16;@BBCNews;BBC News;;/static/img/avatars/C_6.jpg;0;;0;;;
+A;7;2026-03-11;"Biologists Stumble Upon a Singing Spider Species, Dubbed ""Nature's Vocalweaver""";;;265;7;26;@Reddit;Reddit, Inc;;/static/img/avatars/C_7.png;0;;0;;;
+B;8;2026-03-11;Rare Pink Bananas Discovered, Touted as Nature's Cotton Candy;;;238;9;24;@funnytimes;The Funny Times;;/static/img/avatars/C_8.png;0;;0;;;
+B;9;2026-03-11;The Real Jurassic Park? Dinosaur DNA Successfully Extracted from Fossil;;;392;16;17;@WSJ;The Wall Street Journal;;/static/img/avatars/C_9.png;0;;0;;;
+B;10;2026-03-11;Researchers Develop Plants That Emit Enough Energy to Power a Tiny-House;;;421;13;27;@Quora;Quora.com;;/static/img/avatars/C_10.jpg;0;;0;;;
+B;11;2026-03-11;Innovative Study Finds Dolphins Can Be Trained To Detect Cancer;;;305;6;20;@TheEconomist;The Economist;;/static/img/avatars/C_11.jpg;0;;0;;;
+B;12;2026-03-11;The Mystery of the Bermuda Triangle: New Theory Suggests Surprising Explanation;;;278;17;30;@NatEnquirer;The National Enquirer;;/static/img/avatars/C_12.png;0;;0;;;
+B;13;2026-03-11;Scientists Discover a New Species of Glow-in-the-Dark Bees in the Amazon;;;360;10;22;@PBS;PBS News;;/static/img/avatars/C_13.png;0;;0;;;
+B;14;2026-03-11;New Fossil Discovery Suggests Rat-Sized Elephants Once Inhabited the Earth;;;154;19;16;@Reddit;Reddit.com;;/static/img/avatars/C_14.png;0;;0;;;
+B;15;2026-03-11;"Biologists Stumble Upon a Singing Spider Species, Dubbed ""Nature's Vocalweaver""";;;265;7;26;@BBCNews;BBC News;;/static/img/avatars/C_15.jpg;0;;0;;;
