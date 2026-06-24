@@ -28,12 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        requirementMessage.style.display = '';
-
         if (hasMinimumInteractions) {
-            requirementMessage.className = 'text-success small text-center px-3 pb-4';
-            requirementMessage.textContent = `You have interacted with ${interactionCount} posts. You may proceed.`;
+            requirementMessage.style.display = 'none';
         } else {
+            requirementMessage.style.display = '';
             requirementMessage.className = 'text-muted small text-center px-3 pb-4';
             requirementMessage.textContent = `Please interact with at least ${minimumInteractedPosts} posts before continuing. (${interactionCount}/${minimumInteractedPosts})`;
         }
