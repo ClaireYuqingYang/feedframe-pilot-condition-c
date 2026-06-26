@@ -223,13 +223,13 @@ def preprocessing(df):
     df['icon'] = df['username'].str[:2]
     df['icon'] = df['icon'].str.title()
 
-    # make sure user descriptions do not entail any '' or "" as this complicates visualization
-    # also replace nan with some whitespace
-    df['user_description'] = df['user_description'].str.replace("'", '')
-    df['user_description'] = df['user_description'].str.replace('"', '')
-    df['user_description'] = df['user_description'].fillna(' ')
+    # Normalize optional text/numeric fields before using string accessors.
+    df['user_description'] = df['user_description'].fillna(' ').astype(str)
+    df['user_description'] = df['user_description'].str.replace("'", '', regex=False)
+    df['user_description'] = df['user_description'].str.replace('"', '', regex=False)
 
     # make number of followers a formatted string
+    df['user_followers'] = pd.to_numeric(df['user_followers'], errors='coerce').fillna(0)
     df['user_followers'] = df['user_followers'].map('{:,.0f}'.format).str.replace(',', '.')
 
     # check profile image urls
